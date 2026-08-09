@@ -100,23 +100,108 @@ function initWorks() {
     
     let displayWorks = siteData.works;
 
-    // 處理搜尋
-    if (query) {
-        titleObj.textContent = `搜尋結果：${query}`;
-        filterObj.style.display = 'none';
-        displayWorks = displayWorks.filter(w => 
-            w.title.includes(query) || 
-            w.summary.includes(query) || 
-            w.tags.some(t => t.includes(query))
-        );
-    } else {
-        // 產生分類按鈕
-        const categories = ["全部", ...new Set(siteData.works.map(w => w.category))];
-        filterObj.innerHTML = categories.map(cat => 
-            `<button class="cat-btn ${cat === '全部' ? 'active' : ''}" onclick="filterWorks('${cat}', this)">${cat}</button>`
-        ).join('');
+function initSearch() {
+    const input = document.getElementById('searchInput');
+    const results = document.getElementById('searchResults');
+    
+    if (!input || !results) return;
+
+    // 檢查資料庫是否存在，避免報錯
+    if (typeof database === 'undefined') {
+        console.error('找不到資料庫，請確認 database.js 是否正確載入');
+        return;
     }
 
+    let isComposing = false; // 用來記錄是否正在使用中文輸入法選字
+
+    // 中文輸入法：開始選字
+    input.addEventListener('compositionstart', () => {
+        isComposing = true;
+    });
+
+    // 中文輸入法：選字完成
+    input.addEventListener('compositionend', (e) => {
+        isComposing = false;
+        performSearch(e.target.value);
+    });
+
+    // 一般輸入觸發
+    input.addEventListener('input', (e) => {
+        if (isComposing) return; // 如果正在選字，先不觸發搜尋，等選完再搜
+        performSearch(e.target.value);
+    });
+
+    // 支援按下 Enter 鍵直接進入第一個搜尋結果
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const firstResult = results.querySelector('a.search-item');
+            if (firstResult) {
+                window.location.href = firstResult.href;
+            }
+        }
+    });
+
+    // 當點擊回搜尋框時，如果有先前的字就再次顯示結果
+    input.addEventListener('focus', (e) => {
+        if (e.target.value.trim() && results.innerHTML !== '') {
+            results.style.display = 'block';
+        }
+    });
+
+    // 點擊畫面其他地方時，隱藏搜尋結果
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-search')) {
+            results.style.display = 'none';
+        }
+    });
+
+    // --- 執行搜尋的核心邏輯 ---
+    function performSearch(rawQuery) {
+        const query = rawQuery.trim().toLowerCase();
+        
+        if (!query) {
+            results.style.display = 'none';
+            return;
+        }
+
+        // 搜尋作品 (加入防呆：確保 w.title 和 w.tags 存在才比對，避免報錯)
+        const matchedWorks = (database.works || []).filter(w => {
+            const matchTitle = w.title && w.title.toLowerCase().includes(query);
+            const matchTags = w.tags && w.tags.some(t => t.toLowerCase().includes(query));
+            return matchTitle || matchTags;
+        });
+        
+        // 搜尋文章 (加入防呆：確保 a.title 和 a.content 存在才比對)
+        const matchedArticles = (database.articles || []).filter(a => {
+            const matchTitle = a.title && a.title.toLowerCase().includes(query);
+            const matchContent = a.content && a.content.toLowerCase().includes(query);
+            return matchTitle || matchContent;
+        });
+
+        let html = '';
+        
+        // 產生作品的 HTML
+        matchedWorks.forEach(w => {
+            html += `<a href="work.html?id=${w.id}" class="search-item">📖 [作品] ${w.title}</a>`;
+        });
+        
+        // 產生文章的 HTML
+        matchedArticles.forEach(a => {
+            const work = (database.works || []).find(w => w.id === a.workId);
+            const workTitle = work && work.title ? work.title + ' - ' : '';
+            html += `<a href="article.html?id=${a.id}" class="search-item">📄 [文章] ${workTitle}${a.title}</a>`;
+        });
+
+        // 如果都找不到結果
+        if (!html) {
+            html = '<div class="search-item" style="color: var(--text-sec); cursor: default;">找不到相符的結果...</div>';
+        }
+        
+        results.innerHTML = html;
+        results.style.display = 'block';
+    }
+}
     renderWorksList(displayWorks, container);
 }
 
