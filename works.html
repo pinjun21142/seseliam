@@ -1,47 +1,52 @@
+<!-- works.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>所有作品｜我的寫作基地</title>
+    <title>作品分類｜我的寫作基地</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">✦ 寫作基地</a>
-        <div class="nav-links">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜尋文章或作品...">
+        <div class="nav-container">
+            <a href="index.html" class="logo">我的寫作基地 ✦</a>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="搜尋作品或文章...">
+                <div id="searchResults" class="search-dropdown"></div>
             </div>
-            <a href="index.html">Home</a>
-            <a href="works.html" class="active">Works</a>
-            <a href="about.html">About</a>
-            <button id="themeToggle" class="theme-btn">🌙</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="works.html">Works</a>
+                <a href="about.html">About</a>
+                <button id="themeToggle" class="theme-btn" aria-label="切換深色模式">🌙</button>
+            </div>
+            <button class="menu-btn" id="menuBtn" aria-label="選單">☰</button>
         </div>
     </nav>
 
     <main class="container">
-        <header class="page-header">
-            <h1 id="works-page-title">所有作品</h1>
-            <div class="categories-filter" id="categories-filter">
-                <!-- JS 自動產生分類按鈕 -->
+        <section class="works-page">
+            <h2 class="section-title">作品分類</h2>
+            <div class="category-filters" id="categoryFilters">
+                <button class="filter-btn active" data-cat="all">全部</button>
+                <button class="filter-btn" data-cat="連載">連載</button>
+                <button class="filter-btn" data-cat="長篇小說">長篇小說</button>
+                <button class="filter-btn" data-cat="短篇">短篇</button>
+                <button class="filter-btn" data-cat="隨筆">隨筆</button>
             </div>
-        </header>
-        
-        <section class="section">
-            <div class="works-list" id="works-container">
-                <!-- JS 自動產生 -->
+            <div id="worksList" class="card-grid">
+                <!-- 由 JavaScript 產生 -->
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>✦ 寫作基地 ✦</p>
-        <p class="copyright">© 2026 慢慢寫完的故事們. All rights reserved.</p>
+    <footer class="footer">
+        <p>我的寫作基地 © 2026</p>
+        <p class="footer-note">正在慢慢寫完的故事們。</p>
     </footer>
 
-    <script src="js/data.js"></script>
+    <script src="js/database.js"></script>
     <script src="js/main.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', initWorks);</script>
 </body>
 </html>
