@@ -1,65 +1,58 @@
-{\rtf1\ansi\ansicpg950\cocoartf2869
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的寫作基地｜首頁</title>
+    <meta name="description" content="把想說的話，慢慢寫成故事。這裡收藏著我的小說與隨筆。">
+    <meta property="og:title" content="我的寫作基地">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">✦ 寫作基地</a>
+        <div class="nav-links">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜尋文章或作品...">
+            </div>
+            <a href="index.html">Home</a>
+            <a href="works.html">Works</a>
+            <a href="about.html">About</a>
+            <button id="themeToggle" class="theme-btn">🌙</button>
+        </div>
+    </nav>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="zh-Hant">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>\uc0\u25105 \u30340 \u23531 \u20316 \u22522 \u22320 \u65372 \u39318 \u38913 </title>\
-    <meta name="description" content="\uc0\u25226 \u24819 \u35498 \u30340 \u35441 \u65292 \u24930 \u24930 \u23531 \u25104 \u25925 \u20107 \u12290 \u36889 \u35041 \u25910 \u34255 \u33879 \u25105 \u30340 \u23567 \u35498 \u33287 \u38568 \u31558 \u12290 ">\
-    <meta property="og:title" content="\uc0\u25105 \u30340 \u23531 \u20316 \u22522 \u22320 ">\
-    <link rel="stylesheet" href="css/style.css">\
-</head>\
-<body>\
-    <nav class="navbar">\
-        <a href="index.html" class="logo">\uc0\u10022  \u23531 \u20316 \u22522 \u22320 </a>\
-        <div class="nav-links">\
-            <div class="search-box">\
-                <input type="text" id="searchInput" placeholder="\uc0\u25628 \u23563 \u25991 \u31456 \u25110 \u20316 \u21697 ...">\
-            </div>\
-            <a href="index.html">Home</a>\
-            <a href="works.html">Works</a>\
-            <a href="about.html">About</a>\
-            <button id="themeToggle" class="theme-btn">\uc0\u55356 \u57113 </button>\
-        </div>\
-    </nav>\
-\
-    <header class="hero">\
-        <div class="pixel-decor star-1">\uc0\u10023 </div>\
-        <div class="pixel-decor heart-1">\uc0\u9829 </div>\
-        <h1>\uc0\u25105 \u30340 \u23531 \u20316 \u22522 \u22320 </h1>\
-        <p>\uc0\u25226 \u24819 \u35498 \u30340 \u35441 \u65292 \u24930 \u24930 \u23531 \u25104 \u25925 \u20107 \u12290 </p>\
-        <span class="cute-tag">\uc0\u20170 \u22825 \u20063 \u23531 \u20102 \u19968 \u40670 \u40670  \u9997 \u65039 </span>\
-    </header>\
-\
-    <main class="container">\
-        <!-- \uc0\u25512 \u34214 \u20316 \u21697  -->\
-        <section id="featured-section" class="section">\
-            <h2 class="section-title">\uc0\u26412 \u26376 \u25512 \u34214 </h2>\
-            <div id="featured-container"></div>\
-        </section>\
-\
-        <!-- \uc0\u26368 \u26032 \u25991 \u31456  -->\
-        <section class="section">\
-            <h2 class="section-title">\uc0\u26368 \u36817 \u26356 \u26032 </h2>\
-            <div class="cards-grid" id="latest-articles">\
-                <!-- \uc0\u30001  JS \u33258 \u21205 \u29986 \u29983  -->\
-            </div>\
-        </section>\
-    </main>\
-\
-    <footer>\
-        <p>\uc0\u10022  \u23531 \u20316 \u22522 \u22320  \u10022 </p>\
-        <p class="copyright">\'a9 2026 \uc0\u24930 \u24930 \u23531 \u23436 \u30340 \u25925 \u20107 \u20497 . All rights reserved.</p>\
-    </footer>\
-\
-    <script src="js/data.js"></script>\
-    <script src="js/main.js"></script>\
-    <script>document.addEventListener('DOMContentLoaded', initHome);</script>\
-</body>\
-</html>}
+    <header class="hero">
+        <div class="pixel-decor star-1">✧</div>
+        <div class="pixel-decor heart-1">♥</div>
+        <h1>我的寫作基地</h1>
+        <p>把想說的話，慢慢寫成故事。</p>
+        <span class="cute-tag">今天也寫了一點點 ✍️</span>
+    </header>
+
+    <main class="container">
+        <!-- 推薦作品 -->
+        <section id="featured-section" class="section">
+            <h2 class="section-title">本月推薦</h2>
+            <div id="featured-container"></div>
+        </section>
+
+        <!-- 最新文章 -->
+        <section class="section">
+            <h2 class="section-title">最近更新</h2>
+            <div class="cards-grid" id="latest-articles">
+                <!-- 由 JS 自動產生 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>✦ 寫作基地 ✦</p>
+        <p class="copyright">© 2026 慢慢寫完的故事們. All rights reserved.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', initHome);</script>
+</body>
+</html>
